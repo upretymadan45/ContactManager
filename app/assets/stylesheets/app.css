@@ -1,0 +1,22 @@
+.form-group.custom-form {
+    padding: 22px;
+}
+
+@media (max-width: 768px){
+        .form-group.custom-form {
+        padding: 0px;
+    }
+}
+
+#map {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius:20px;
+    border: 15px solid darkorange;
+}
+
+#map {
+    background: #58B;
+}
+

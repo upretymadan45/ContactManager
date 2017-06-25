@@ -1,0 +1,56 @@
+<div class = "row">
+        <div class="col-md-3 col-sm-12">
+                <div class="form-group">
+                    <input type = "text" 
+                                placeholder = "Search Contacts" 
+                                id="square"
+                                class="form-control"ß/>
+                </div>
+        </div>
+        <div class = "col-md-9 col-sm-12">
+            <table class = "table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th class="hidden-xs">Phone</th>
+                                <th>Mobile</th>
+                                <th class="hidden-xs">Email</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id = "contacts">
+                            <% @contacts.each do |contact| %>
+                                <tr>
+                                    <td><%= link_to(contact.name, contact_info_path(contact) ) %></td>
+                                    <td><%= contact.address%></td>
+                                    <td class="hidden-xs"><%= contact.phone%></td>
+                                    <td><%= contact.mobile%></td>
+                                    <td class="hidden-xs"><%= contact.email%></td>
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                                Actions
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <%= link_to('Delete '+contact.name,'#',  
+                                                        :class => 'askConfirmation',
+                                                        :value => contact.id) 
+                                                    %>
+                                                </li>
+                                                <li>
+                                                    <%= link_to('Edit '+ contact.name, 
+                                                    edit_contact_info_path(contact),
+                                                    :method => :get) %>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <% end %>
+                        </tbody>
+            </table>
+        </div>
+</div>

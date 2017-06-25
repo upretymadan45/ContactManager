@@ -1,0 +1,54 @@
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                Name: <%= @contact.name %>
+            </div>
+            <div class="panel-body">
+                Address: <%= @contact.address %>
+            </div>
+            <div class="panel-footer">
+                <button type="button" 
+                        class="btn btn-success btn-md">
+                            <%= @contact.mobile %>
+                            <i class="fa fa-phone"></i>
+                </button>
+                <button type="button" 
+                        class="btn btn-success btn-md">
+                            <%= @contact.email %>
+                            <i class="fa fa-envelope-open"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5 col-md-offset-2">
+        <div id="map">My Location</div>
+    </div>
+</div>
+<script>
+  $(document).ready(function(){
+    var map = new GMaps({
+      div: '#map',
+      lat: -12.043333,
+      lng: -77.028333,
+      height: '500px',
+      width: '500px'
+    });
+
+    GMaps.geocode({
+        address: '<%= @contact.address %>',
+        callback: function(results, status) {
+            if (status == 'OK') {
+            var latlng = results[0].geometry.location;
+            map.setCenter(latlng.lat(), latlng.lng());
+            map.addMarker({
+                lat: latlng.lat(),
+                lng: latlng.lng()
+            });
+            }
+        }
+    });
+
+  });
+</script>
